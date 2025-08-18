@@ -23,15 +23,12 @@ y_vals = center_y + m * (x_vals - center_x)
 fig, ax = plt.subplots(figsize=(6, 6))
 ax.set_xlim(0, width)
 ax.set_ylim(0, height)
-ax.axhline(center_y, color="gray", linestyle="--", alpha=0.3)
-ax.axvline(center_x, color="gray", linestyle="--", alpha=0.3)
 
 # Lijn tekenen
 ax.plot(x_vals, y_vals, color="blue", linewidth=2)
-ax.set_title(f"Lijn door het midden met {stroom_hoek}° rotatie")
+ax.set_title(f"Upwind met {stroom_hoek}° stroom ten opzichte van wind")
+ax.axis("off")
 
-# Centerpunt markeren
-ax.plot(center_x, center_y, 'ro')
 
 
 
@@ -41,6 +38,7 @@ if st.button("Bereken"):
     resultaat = stroom_links + stroom_rechts  # Hier komt jouw berekening
     st.success(f"Het resultaat is: {resultaat}")
     st.pyplot(fig)
+
 
 
 
