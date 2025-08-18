@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
 
 st.title("Mijn Bereken App")
 
@@ -40,5 +41,6 @@ if st.button("Bereken"):
     resultaat = a + b  # Hier komt jouw berekening
     st.success(f"Het resultaat is: {resultaat}")
     st.pyplot(fig)
+
 
 
