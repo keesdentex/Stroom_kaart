@@ -38,9 +38,10 @@ ax.plot(center_x, center_y, 'ro')
 
 # Actieknop
 if st.button("Bereken"):
-    resultaat = a + b  # Hier komt jouw berekening
+    resultaat = stroom_links + stroom_rechts  # Hier komt jouw berekening
     st.success(f"Het resultaat is: {resultaat}")
     st.pyplot(fig)
+
 
 
 
