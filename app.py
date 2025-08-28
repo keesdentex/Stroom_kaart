@@ -56,6 +56,7 @@ lengte_baan= 100
 # Actieknop
 if st.button("Bereken"):
     # tijd voor de logica
+   
     snelheid_boot= 4
     schijnbare_wind_rechts=np.array([stroom_rechts*np.cos(theta), -wind_snelheid+stroom_rechts*np.sin(theta)])
     schijnbare_wind_rechts_hoek= np.arctan2(schijnbare_wind_rechts[1], schijnbare_wind_rechts[0])
@@ -68,10 +69,10 @@ if st.button("Bereken"):
     boot_stuurboord_rechts_hoek = 135+ schijnbare_wind_rechts_hoek
     boot_bakboord_links_hoek = 225 + schijnbare_wind_links_hoek
     boot_bakboord_rechts_hoek = 225 + schijnbare_wind_rechts_hoek
-    boot_stuurboord_links=np.array([snelheid_boot*np.cos(np.deg2rad(boot_stuurboord_links_hoek))-stroom_links*np.cos(stroom_hoek_abs), snelheid_boot*np.sin(np.deg2rad(boot_stuurboord_links_hoek))-stroom_links*np.sin(stroom_hoek_abs)])
-    boot_stuurboord_rechts=np.array([snelheid_boot*np.cos(np.deg2rad(boot_stuurboord_rechts_hoek))-stroom_rechts*np.cos(stroom_hoek_abs), snelheid_boot*np.sin(np.deg2rad(boot_stuurboord_rechts_hoek))-stroom_rechts*np.sin(stroom_hoek_abs)])
-    boot_bakboord_links=np.array([snelheid_boot*np.cos(np.deg2rad(boot_bakboord_links_hoek))-stroom_links*np.cos(stroom_hoek_abs), snelheid_boot*np.sin(np.deg2rad(boot_bakboord_links_hoek))-stroom_links*np.sin(stroom_hoek_abs)])
-    boot_bakboord_rechts=np.array([snelheid_boot*np.cos(np.deg2rad(boot_bakboord_rechts_hoek))-stroom_rechts*np.cos(stroom_hoek_abs), snelheid_boot*np.sin(np.deg2rad(boot_bakboord_rechts_hoek))-stroom_rechts*np.sin(stroom_hoek_abs)])
+    boot_stuurboord_links=np.array([snelheid_boot*np.cos(np.deg2rad(boot_stuurboord_links_hoek))-stroom_links*np.cos(theta), snelheid_boot*np.sin(np.deg2rad(boot_stuurboord_links_hoek))-stroom_links*np.sin(theta)])
+    boot_stuurboord_rechts=np.array([snelheid_boot*np.cos(np.deg2rad(boot_stuurboord_rechts_hoek))-stroom_rechts*np.cos(theta), snelheid_boot*np.sin(np.deg2rad(boot_stuurboord_rechts_hoek))-stroom_rechts*np.sin(theta)])
+    boot_bakboord_links=np.array([snelheid_boot*np.cos(np.deg2rad(boot_bakboord_links_hoek))-stroom_links*np.cos(theta), snelheid_boot*np.sin(np.deg2rad(boot_bakboord_links_hoek))-stroom_links*np.sin(theta)])
+    boot_bakboord_rechts=np.array([snelheid_boot*np.cos(np.deg2rad(boot_bakboord_rechts_hoek))-stroom_rechts*np.cos(theta), snelheid_boot*np.sin(np.deg2rad(boot_bakboord_rechts_hoek))-stroom_rechts*np.sin(theta)])
     # hoeken over de grond
     boot_stuurboord_links_hoek2 = np.rad2deg(np.arctan2(boot_stuurboord_links[1], boot_stuurboord_links[0]))
     boot_stuurboord_rechts_hoek2 = np.rad2deg(np.arctan2(boot_stuurboord_rechts[1], boot_stuurboord_rechts[0]))
@@ -119,30 +120,30 @@ if st.button("Bereken"):
     hoek_boot_rechts1= 180-boot_bakboord_rechts_hoek2 + boot_stuurboord_rechts_hoek2
     hoek_boot_rechts2= hoek_vector_rechts- boot_stuurboord_rechts_hoek2
     hoek_boot_rechts3=180 - hoek_boot_rechts1 - hoek_boot_rechts2
- 
-    afstand_tegenover_hoek_rechts2= afstand_rechts * np.sin(np.deg2rad(hoek_boot_rechts2))/ np.sin(np.deg2rad(hoek_boot_rechts1))
-    afstand_tegenover_hoek_rechts3= afstand_rechts * np.sin(np.deg2rad(hoek_boot_rechts3))/ np.sin(np.deg2rad(hoek_boot_rechts1))
+    #st.write(f'snelheden boot rechts: {snelheid_boot_bakboord_rechts}, {snelheid_boot_stuurboord_rechts}')
+    #st.write(f'snelheden boot links: {snelheid_boot_bakboord_links}, {snelheid_boot_stuurboord_links}')
+    afstand_tegenover_hoek_rechts3= afstand_rechts * np.sin(np.deg2rad(hoek_boot_rechts2))/ np.sin(np.deg2rad(hoek_boot_rechts1))
+    afstand_tegenover_hoek_rechts2= afstand_rechts * np.sin(np.deg2rad(hoek_boot_rechts3))/ np.sin(np.deg2rad(hoek_boot_rechts1))
     tijd_rechts_naar_bakboord_layline= afstand_tegenover_hoek_rechts2/snelheid_boot_stuurboord_rechts
     tijd_rechts_naar_stroomlijn_via_stuurboord_layline= afstand_tegenover_hoek_rechts3/snelheid_boot_bakboord_rechts
     totale_tijd_rechts= -tijd_rechts_stroomlijn + tijd_rechts_naar_bakboord_layline + tijd_rechts_naar_stroomlijn_via_stuurboord_layline
-
+    # st.write(f'afstanden links: {lengte_bakboord_links}, {afstand_tegenover_hoek_links2}, {afstand_tegenover_hoek_links3}')
+    # st.write(f'afstanden rechts: {lengte_bakboord_rechts}, {afstand_tegenover_hoek_rechts2}, {afstand_tegenover_hoek_rechts3}')
+    # st.write(f'Tijd links: {totale_tijd_links:.2f} uur, tijd rechts: {totale_tijd_rechts:.2f} uur')
+    # st.write(f'tijden links: {tijd_links_stroomlijn:.2f}, {tijd_links_naar_stuurboord_layline:.2f}, {tijd_links_naar_boei_via_stuurboord_layline:.2f}')
+    # st.write(f'tijden rechts: {tijd_rechts_stroomlijn:.2f}, {tijd_rechts_naar_bakboord_layline:.2f}, {tijd_rechts_naar_stroomlijn_via_stuurboord_layline:.2f}')
     if stroom_hoek >=0:
         teken_stroom=True
     else:
         teken_stroom=False
     
-    if teken_stroom and totale_tijd_links < totale_tijd_rechts:
+    if  totale_tijd_links < totale_tijd_rechts:
         procent_snellere_baan= (totale_tijd_rechts - totale_tijd_links)/totale_tijd_rechts * 100
         st.write(f"De linkse baan is {procent_snellere_baan:.2f}% sneller dan de rechtse baan.")
-    elif teken_stroom and totale_tijd_rechts < totale_tijd_links:
+    else: 
         procent_snellere_baan= (totale_tijd_links - totale_tijd_rechts)/totale_tijd_links * 100
         st.write(f"De rechtse baan is {procent_snellere_baan:.2f}% sneller dan de linkse baan.")
-    elif not teken_stroom and totale_tijd_links < totale_tijd_rechts:
-        procent_snellere_baan= (totale_tijd_rechts - totale_tijd_links)/totale_tijd_rechts * 100
-        st.write(f"De rechtse baan is {procent_snellere_baan:.2f}% sneller dan de linkse baan.")
-    else:
-        procent_snellere_baan= (totale_tijd_links - totale_tijd_rechts)/totale_tijd_links * 100
-        st.write(f"De linkse baan is {procent_snellere_baan:.2f}% sneller dan de rechtse baan.")
+    
     # Resultaat tonen
     st.pyplot(fig)
 
