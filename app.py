@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 st.title("Welke baan is sneller bij upwind met stroom?")
 
 # Inputvelden
-stroom_links = st.number_input("Stroomsnelheid links", value=0.0)
-stroom_rechts = st.number_input("Stroomsnelheid rechts", value=0.0)
-stroom_hoek = st.number_input("Hoek van stroom ten opzichte van de wind (rechts positief, links negatief)", value=0.0)
-wind_snelheid= st.number_input("Windsnelheid in knopen", value=0.0)
+stroom_links = st.number_input("Stroomsnelheid links", value=0.0, step=0.1, format="%.2f")
+stroom_rechts = st.number_input("Stroomsnelheid rechts", value=0.0, step=0.1, format="%.2f")
+stroom_hoek = st.number_input("Hoek van stroom t.o.v. wind (rechts positief, links negatief)", value=0.0, step=1.0, format="%.1f")
+wind_snelheid = st.number_input("Windsnelheid in knopen", value=0.0, step=0.1, format="%.1f")
 
 # Ik maak de waarden zo dat ik 1 berekening maar hoef te doen
 stroom_hoek_abs= abs(stroom_hoek)
